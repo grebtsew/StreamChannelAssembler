@@ -1,28 +1,29 @@
-name: Continuous Integration
+Comment: >
+  name: Continuous Integration
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  on:
+    push:
+      branches:
+        - main
+    pull_request:
+      branches:
+        - main
 
-jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
+  jobs:
+    build-and-test:
+      runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up CMake
-      uses: stalehd/setup-cmake@v1
+      - name: Set up CMake
+        uses: stalehd/setup-cmake@v1
 
-    - name: Build and test
-      run: |
-        mkdir build
-        cd build
-        cmake ..
-        make
-        make test
+      - name: Build and test
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+          make
+          make test
