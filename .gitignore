@@ -52,6 +52,6 @@ compile_commands.json
 .vscode/cmake-kits.json
 .vscode/cmake-tools.json
 
-#Inputs/Contents/*
-#Inputs/Overlays/*
-#Inputs/Transitions/*
+Inputs/Contents/*
+Inputs/Overlays/*
+Inputs/Transitions/*

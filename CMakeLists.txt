@@ -6,7 +6,12 @@ set(CMAKE_CXX_STANDARD 17)
 # Find GStreamer package
 find_package(PkgConfig REQUIRED)
 find_package(OpenCV REQUIRED)
-pkg_check_modules(GST REQUIRED gstreamer-1.0)
+pkg_check_modules(gtk3 REQUIRED IMPORTED_TARGET gtk+-3.0)
+pkg_search_module(gstreamer REQUIRED IMPORTED_TARGET gstreamer-1.0>=1.4)
+pkg_search_module(gstreamer-sdp REQUIRED IMPORTED_TARGET gstreamer-sdp-1.0>=1.4)
+pkg_search_module(gstreamer-app REQUIRED IMPORTED_TARGET gstreamer-app-1.0>=1.4)
+pkg_search_module(gstreamer-video REQUIRED IMPORTED_TARGET gstreamer-video-1.0>=1.4)
+
 
 
 include_directories(${GST_INCLUDE_DIRS})
@@ -15,12 +20,20 @@ message("GST_INCLUDE_DIRS: ${GST_INCLUDE_DIRS}")
 message("OpenCV_INCLUDE_DIRS: ${OpenCV_INCLUDE_DIRS}")
 message("OpenCV_LIBS: ${OpenCV_LIBS}")
 message("GST_LIBRARIES: ${GST_LIBRARIES}")
+message("CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")
+
 
 # Add your source files
 add_executable(StreamChannelAssembler main.cpp)
 
-target_include_directories(StreamChannelAssembler PRIVATE ${OpenCV_INCLUDE_DIRS})
+add_subdirectory(src)
 
-target_link_libraries(StreamChannelAssembler PRIVATE ${OpenCV_LIBS} ${GST_LIBRARIES})
+target_include_directories(StreamChannelAssembler PRIVATE ${OpenCV_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-# PRIVATE 
+target_link_libraries(StreamChannelAssembler PRIVATE ${OpenCV_LIBS} ${GST_LIBRARIES} file 
+    PkgConfig::gtk3
+    PkgConfig::gstreamer
+    PkgConfig::gstreamer-sdp
+    PkgConfig::gstreamer-app
+    PkgConfig::gstreamer-video)
+
