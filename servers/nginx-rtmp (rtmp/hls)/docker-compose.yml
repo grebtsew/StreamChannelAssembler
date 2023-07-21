@@ -1,0 +1,9 @@
+version: '3'
+services:
+  rtmp-server:
+    build: .
+    ports:
+      - "1935:1935" # RTMP port
+      - "8080:80"   # HLS port
+    volumes:
+      - ./hls:/tmp # Mount a local 'hls' folder to '/tmp' inside the container for HLS segments

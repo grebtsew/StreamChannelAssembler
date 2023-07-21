@@ -1,4 +1,4 @@
 {
-    "image_delay":5000,
+    "image_delay":5,
     "content_folder":"./Inputs/Contents"
 }

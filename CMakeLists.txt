@@ -13,8 +13,7 @@ pkg_search_module(gstreamer-app REQUIRED IMPORTED_TARGET gstreamer-app-1.0>=1.4)
 pkg_search_module(gstreamer-video REQUIRED IMPORTED_TARGET gstreamer-video-1.0>=1.4)
 
 
-
-include_directories(${GST_INCLUDE_DIRS})
+include_directories(${GST_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS})
 
 message("GST_INCLUDE_DIRS: ${GST_INCLUDE_DIRS}")
 message("OpenCV_INCLUDE_DIRS: ${OpenCV_INCLUDE_DIRS}")
@@ -30,7 +29,7 @@ add_subdirectory(src)
 
 target_include_directories(StreamChannelAssembler PRIVATE ${OpenCV_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-target_link_libraries(StreamChannelAssembler PRIVATE ${OpenCV_LIBS} ${GST_LIBRARIES} file 
+target_link_libraries(StreamChannelAssembler PRIVATE ${OpenCV_LIBS} ${GST_LIBRARIES} file stream
     PkgConfig::gtk3
     PkgConfig::gstreamer
     PkgConfig::gstreamer-sdp
