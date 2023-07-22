@@ -1,0 +1,13 @@
+
+version: '3.8'
+services:
+  rtmp-server:
+    image: bluenviron/mediamtx:0.23.8
+    network_mode: "host"
+    ports:
+      - "8554:8554"
+      - "1935:1935"
+      - "8888:8888"
+      - "8889:8889"
+    #volumes:
+    #  - ./hls:/tmp # Mount a local 'hls' folder to '/tmp' inside the container for HLS segments
