@@ -2,12 +2,27 @@
 #define STREAM_H
 
 #include <iostream>
-#include <iomanip>
-#include <thread>
-#include <chrono>
-#include <vector>
 
+class Stream {
+public:
+    virtual void play() = 0; // Pure virtual function for play (needs to be overridden)
+    virtual void init() = 0; // Pure virtual function for init (needs to be overridden)
+    virtual ~Stream() {}     // Virtual destructor for proper cleanup in derived classes
+};
 
-int create_stream(const std::vector<std::string>& imagePaths, int duration);
+// Derived class Image
+class Image : public Stream {
+public:
+    void play() override;
+    void init() override;
+};
+
+// Derived class Video
+class Video : public Stream {
+public:
+    void play() override;
+    void init() override;
+};
+
 
 #endif // STREAM_H

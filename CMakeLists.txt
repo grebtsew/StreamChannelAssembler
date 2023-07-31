@@ -29,7 +29,7 @@ add_subdirectory(src)
 
 target_include_directories(StreamChannelAssembler PRIVATE ${OpenCV_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-target_link_libraries(StreamChannelAssembler PRIVATE ${OpenCV_LIBS} ${GST_LIBRARIES} file stream
+target_link_libraries(StreamChannelAssembler PRIVATE ${OpenCV_LIBS} ${GST_LIBRARIES} file stream format stream_utils
     PkgConfig::gtk3
     PkgConfig::gstreamer
     PkgConfig::gstreamer-sdp
