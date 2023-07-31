@@ -27,6 +27,20 @@ std::vector<std::string> get_stream_content(const std::string& contentFolderPath
 }
 
 
+bool isJSONFile(const std::string& filePath) {
+    // Get the last position of the dot in the file path
+    size_t dotPosition = filePath.find_last_of('.');
+
+    // Extract the file extension from the file path
+    std::string fileExtension = filePath.substr(dotPosition + 1);
+
+    // Convert the file extension to lowercase for case-insensitive comparison
+    std::transform(fileExtension.begin(), fileExtension.end(), fileExtension.begin(), ::tolower);
+
+    // Check if the file extension is ".json"
+    return (fileExtension == "json");
+}
+
 json read_json_file(const std::string& filePath) {
     std::ifstream inputFile(filePath);
     json jsonObject;

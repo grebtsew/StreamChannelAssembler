@@ -7,15 +7,17 @@
 #include <chrono>
 #include <vector>
 
+#include "json.hpp"
 #include "format.h"
 
-enum State {
+enum State
+{
     Playing,
     Idle,
     None,
     Finished
 };
 
-int create_stream(const std::vector<std::string>& imagePaths, int duration);
+int create_stream(const std::vector<std::string> &content_paths, json config);
 
 #endif // STREAM_UTILS_H

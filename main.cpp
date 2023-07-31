@@ -2,27 +2,29 @@
 #include "src/file.h"
 #include "src/stream_utils.h"
 
-#include <opencv2/opencv.hpp> 
+#include <opencv2/opencv.hpp>
 using namespace cv;
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[])
+{
 
     /* 1. Get config */
-    std::string configJsonPath = "./data/config.json"; 
+    std::string configJsonPath = "./data/config.json";
     json json_object = read_json_file(configJsonPath);
     std::cout << "Config Json Collected : " << json_object << std::endl;
 
-
     /* 2. Collect all content files */
-    std::string contentFolderPath = json_object["content_folder"]; 
-    std::vector<std::string> allowedExtensions = {".png", ".jpg", ".gif", ".jpeg", ".mp4", ".avi", ".json"}; 
+    std::string contentFolderPath = json_object["content_folder"];
+    std::vector<std::string> allowedExtensions = json_object["allowed_extentions"];
 
     // Call the function to get the gathered paths
-    std::vector<std::string> gatheredPaths = get_stream_content(contentFolderPath, allowedExtensions);
+    std::vector<std::string>
+        gatheredPaths = get_stream_content(contentFolderPath, allowedExtensions);
 
     // Print the gathered paths
     std::cout << "Gathered paths:" << std::endl;
-    for (const std::string& path : gatheredPaths) {
+    for (const std::string &path : gatheredPaths)
+    {
         std::cout << path << std::endl;
     }
 
@@ -32,5 +34,6 @@ int main(int argc, char* argv[]) {
     /* 4. Start Stream */
     // Create the GStreamer pipeline
     create_stream(playlist, json_object);
-    }
-    
+
+    std::cout << "All Done Have a Nice Day!" << std::endl;
+}

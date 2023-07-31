@@ -1,2 +1,88 @@
 # StreamChannelAssembler
- Create and publish streams from a folder of images, videos and livefeeds.
+ Create and publish streams from a folder of images, videos and livefeeds. Just place your arbitrary images and videos in the `./data/contents/` folder and run the application. By utilizing gStreamer and OpenCV the images will be livestreamed to a channel or locally. JSON files with links to webcam or other live feeds can also be used. The stream can then be sent to various media servers. The current implementation is only a MVP (Minimum Viable Product) and more features will be added further on. Check out the `./data/config.json` file to change settings.
+
+![license](https://img.shields.io/github/license/grebtsew/StreamChannelAssembler)
+![size](https://img.shields.io/github/repo-size/grebtsew/StreamChannelAssembler)
+![commit](https://img.shields.io/github/last-commit/grebtsew/StreamChannelAssembler)
+
+
+# Motivation
+To be fair, I am quite rusty in `C++`, which motivates the decision to create a new project in `C++`. The focus with the project is to create clean and good practice code towards high performing computing. Video streaming is a computer resource heavy task which fit perfectly. The application is strongly coupled to gStreamer and OpenCV which are great libraries to learn when renewing once code language skills.
+
+# Running
+Firstly install dependencies as in the `Dockerfile`.
+Then compile, build and run the application by running the following command:
+```bash
+cmake -S . -B build && cmake --build build && ./build/StreamChannelAssembler
+```
+
+# Docker
+This repository has been dockerized. Currently this is under construction.
+
+```bash
+docker-compose up --build
+```
+
+# Testing
+
+Under construction...
+
+# Examples
+
+These are some examples of streams that can be added to the content folder except for videos and images.
+
+```json
+{
+    "name": "Test Video Example",
+    "type": "video",
+    "target": "videotestsrc ! videoconvert ! appsink",
+    "length": 20, // how many seconds the live stream should play
+    "start": 0 // where in the stream we should start
+}
+```
+
+```json
+{
+    "name": "Local Webcam Example",
+    "type": "video",
+    "target": 0,
+    "length": 20,
+}
+```
+These JSON objects can be seen as defining the input to the application.
+
+
+
+
+# Known issues
+
+This is a list of known issues that hopefully will be solved in near future:
+
+* .gif not supported
+* docker not working
+* pure gstreamer commands can't run
+* readme need more examples and helpful tips of how to run and so on.
+* demo added to readme
+* fix performance
+* add scheduler
+* add a couple of playlist orders, such as random
+* fix local view in a manageable windowform
+* add test rtsp, hls and webrtc stream commands
+* no animations
+* no overlays
+
+
+# Some major sources
+
+* https://stackoverflow.com/questions/37339184/how-to-write-opencv-mat-to-gstreamer-pipeline
+* https://chat.openai.com/
+* https://github.com/bluenviron/mediamtx
+* https://github.com/nlohmann/json
+
+
+
+# License
+
+This project is under the MIT license, read more [here](/LICENSE).
+
+Copyright (c) 2023 Grebtsew

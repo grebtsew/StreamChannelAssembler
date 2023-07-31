@@ -23,13 +23,13 @@ message("CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")
 
 
 # Add your source files
-add_executable(StreamChannelAssembler main.cpp)
+add_executable(StreamChannelAssembler main.cpp src/format.cpp src/file.cpp src/stream_utils.cpp)
 
 add_subdirectory(src)
 
 target_include_directories(StreamChannelAssembler PRIVATE ${OpenCV_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-target_link_libraries(StreamChannelAssembler PRIVATE ${OpenCV_LIBS} ${GST_LIBRARIES} file stream format stream_utils
+target_link_libraries(StreamChannelAssembler PRIVATE ${OpenCV_LIBS} ${GST_LIBRARIES} file format stream_utils
     PkgConfig::gtk3
     PkgConfig::gstreamer
     PkgConfig::gstreamer-sdp
