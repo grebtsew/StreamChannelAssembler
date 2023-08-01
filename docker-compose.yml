@@ -1,8 +1,12 @@
-version: '3'
+version: '3.8'
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+
+  stream_channel_assembler:
+    build: ./
     volumes:
-      - ./your_application:/app/your_application
+      - ./data:/app/data
+    ports:
+      - "1935:1935"
+      - "80:80"
+      - "443:443"
+      - "554:554"
