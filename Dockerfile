@@ -23,16 +23,16 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 
 # Build and install OpenCV from source
 # Potential future problem with version changes here!
-RUN git clone https://github.com/opencv/opencv.git /opt/opencv \
-    && mkdir /opt/opencv/build \
-    && cd /opt/opencv/build \
-    && cmake .. \
-    && make -j$(nproc) \
-    && make install
+#RUN git clone https://github.com/opencv/opencv.git /opt/opencv \
+#    && mkdir /opt/opencv/build \
+#   && cd /opt/opencv/build \
+#    && cmake .. \
+#    && make -j$(nproc) \
+#    && make install
 
 # Set environment variables for OpenCV
-ENV OPENCV_INCLUDE_DIR=/usr/local/include/opencv4
-ENV OPENCV_LIB_DIR=/usr/local/lib
+#ENV OPENCV_INCLUDE_DIR=/usr/local/include/opencv4
+#ENV OPENCV_LIB_DIR=/usr/local/lib
 
 # Create and set the working directory
 WORKDIR /app
