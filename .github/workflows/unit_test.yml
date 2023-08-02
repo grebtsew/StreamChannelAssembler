@@ -1,0 +1,25 @@
+name: Unit Tests
+
+on:
+  workflow_dispatch: # For now we trigger this test manually only
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install OpenCV
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libopencv-dev
+
+    - name: Build and run tests
+      run: |
+        mkdir build
+        cd build
+        cmake ..  # Adjust the CMake configuration according to your project
+        make      # Use the appropriate build command for your project
+        ./tests     # Run the tests 

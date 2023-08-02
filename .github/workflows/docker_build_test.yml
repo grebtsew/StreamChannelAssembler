@@ -1,0 +1,15 @@
+name: Docker Build Test
+
+on:
+  workflow_dispatch: # For now we trigger this test manually only
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Build Docker image
+      run: docker build -t streamchannelassembler .
