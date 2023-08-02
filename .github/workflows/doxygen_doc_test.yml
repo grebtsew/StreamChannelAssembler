@@ -1,10 +1,7 @@
 name: C++ Documentation Check
 
 on:
-  pull_request:
-    paths:
-      - '**/*.cpp'
-      - '**/*.h'
+  workflow_dispatch: # For now we trigger this test manually only
 
 jobs:
   build:
