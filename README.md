@@ -59,7 +59,6 @@ These JSON objects can be seen as defining the input to the application.
 This is a list of known issues that hopefully will be solved in near future:
 
 * .gif not supported
-* docker not working
 * pure gstreamer commands can't run
 * readme need more examples and helpful tips of how to run and so on.
 * demo added to readme
