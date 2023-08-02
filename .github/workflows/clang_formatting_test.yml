@@ -1,0 +1,39 @@
+name: C++ Code Formatting Check
+
+on:
+  pull_request:
+    paths:
+      - '**/*.cpp'
+      - '**/*.h'
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install clang-format
+      run: sudo apt-get update && sudo apt-get install -y clang-format
+
+    - name: Check C++ Code Style
+      run: |
+        # Find C++ files to check
+        changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep -E '\.(cpp|h)$')
+
+        # Exit if no C++ files are changed
+        if [ -z "$changed_files" ]; then
+          echo "No C++ files changed. Skipping clang-format check."
+          exit 0
+        fi
+
+        # Check C++ code style and generate a diff of changes
+        diff=$(git diff -U0 --no-color --exit-code ${{ github.event.before }} ${{ github.event.after }} -- $changed_files | clang-format-diff-10 -p1)
+
+        # Exit if clang-format changes are found
+        if [ -n "$diff" ]; then
+          echo "Found code style issues. Please run clang-format locally to fix them:"
+          echo "$diff"
+          exit 1
+        fi

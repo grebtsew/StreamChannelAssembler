@@ -1,0 +1,29 @@
+name: C++ Documentation Check
+
+on:
+  pull_request:
+    paths:
+      - '**/*.cpp'
+      - '**/*.h'
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Doxygen
+      run: sudo apt-get update && sudo apt-get install -y doxygen
+
+    - name: Generate Doxygen Documentation
+      run: doxygen Doxyfile
+
+    - name: Check Doxygen Errors
+      run: |
+        doxygen -s -u -c Doxyfile
+        if [[ $? -eq 1 ]]; then
+          echo "Doxygen documentation has errors. Please fix them and regenerate the documentation."
+          exit 1
+        fi
