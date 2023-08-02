@@ -1,7 +1,6 @@
 #include <iostream>
-#include "src/file.h"
-#include "src/stream_utils.h"
-
+#include "src/file.hpp"
+#include "src/stream_utils.hpp"
 #include <opencv2/opencv.hpp>
 using namespace cv;
 

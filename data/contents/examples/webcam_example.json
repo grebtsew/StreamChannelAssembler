@@ -1,0 +1,7 @@
+{
+    "name": "webcam",
+    "type": "video",
+    "target": 0,
+    "length": 20,
+    "start": 0
+}

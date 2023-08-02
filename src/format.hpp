@@ -1,9 +1,9 @@
-#ifndef FORMAT_H
-#define FORMAT_H
+#ifndef FORMAT_HPP
+#define FORMAT_HPP
 
 #include <iostream>
 #include <string>
-#include "file.h"
+#include "file.hpp"
 #include <algorithm>
 #include <cctype>
 
@@ -15,5 +15,6 @@ enum InputFormat
 };
 
 InputFormat getInputFormat(const std::string &filePath);
+std::string toLower(const std::string &str);
 
-#endif // FORMAT_H
+#endif // FORMAT_HPP

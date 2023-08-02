@@ -18,6 +18,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     gstreamer1.0-plugins-ugly \
     libopencv-dev \
     libgtk-3-dev \
+    catch2 \
     wget
 
 # Build and install OpenCV from source
