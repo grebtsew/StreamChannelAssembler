@@ -1,7 +1,4 @@
-#include "stream_utils.h"
-
-#include <opencv2/opencv.hpp>
-using namespace cv;
+#include "stream_utils.hpp"
 
 /**
  * @brief Push an image frame to a video writer.
@@ -15,7 +12,7 @@ using namespace cv;
  * @param width The desired width of the output frame (default is 640).
  * @param height The desired height of the output frame (default is 480).
  */
-void push_image(cv::Mat &frame, cv::VideoWriter &writer, int frequency = 30, int width = 640, int height = 480)
+void push_image(cv::Mat &frame, cv::VideoWriter &writer, int frequency, int width, int height)
 {
 
     if (frame.empty())

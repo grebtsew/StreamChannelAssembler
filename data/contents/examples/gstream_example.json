@@ -1,0 +1,6 @@
+{
+    "name": "webcam",
+    "type": "video",
+    "target": "videotestsrc ! videoconvert ! appsink",
+    "length": 20
+}

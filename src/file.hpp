@@ -1,5 +1,5 @@
-#ifndef FILE_H
-#define FILE_H
+#ifndef FILE_HPP
+#define FILE_HPP
 
 #include <vector>
 #include <string>
@@ -12,4 +12,4 @@ std::vector<std::string> get_stream_content(const std::string &contentFolderPath
 std::string get_file_extension(const std::string &filePath);
 bool isJSONFile(const std::string &filePath);
 
-#endif // FILE_H
+#endif // FILE_HPP
