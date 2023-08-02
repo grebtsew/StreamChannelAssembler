@@ -4,7 +4,7 @@
 
 TEST_CASE("Test 'push_image' function", "[push_image]")
 {
-    cv::Mat frame = cv::imread("image.jpg", cv::IMREAD_COLOR);
+    cv::Mat frame = cv::imread("../data/contents/examples/test/4.jpg", cv::IMREAD_COLOR);
     cv::VideoWriter writer("output_video.avi", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 30, frame.size());
 
     // Test the function without resizing the frame
