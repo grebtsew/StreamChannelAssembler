@@ -1,6 +1,6 @@
-#include <iostream>
 #include "src/file.hpp"
 #include "src/stream_utils.hpp"
+#include <iostream>
 #include <opencv2/opencv.hpp>
 using namespace cv;
 
@@ -19,7 +19,7 @@ using namespace cv;
  *
  * @note None
  */
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     /* 1. Get config */
     std::string configJsonPath = "./data/config.json";
@@ -36,8 +36,7 @@ int main(int argc, char *argv[])
 
     // Print the gathered paths
     std::cout << "Gathered paths:" << std::endl;
-    for (const std::string &path : gatheredPaths)
-    {
+    for (const std::string& path : gatheredPaths) {
         std::cout << path << std::endl;
     }
 

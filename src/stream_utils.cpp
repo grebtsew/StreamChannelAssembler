@@ -12,7 +12,7 @@
  * @param width The desired width of the output frame (default is 640).
  * @param height The desired height of the output frame (default is 480).
  */
-void push_image(cv::Mat &frame, cv::VideoWriter &writer, int frequency, int width, int height)
+void push_image(cv::Mat& frame, cv::VideoWriter& writer, int frequency, int width, int height)
 {
 
     if (frame.empty())
@@ -20,13 +20,10 @@ void push_image(cv::Mat &frame, cv::VideoWriter &writer, int frequency, int widt
 
     cv::resize(frame, frame, cv::Size(width, height));
 
-    if (frame.channels() > 3)
-    {
+    if (frame.channels() > 3) {
         // If more than 3 channels, convert to 3 channels (BGR format)
         cv::cvtColor(frame, frame, cv::COLOR_RGBA2BGR); // Change conversion code accordingly if needed
-    }
-    else if (frame.channels() < 3)
-    {
+    } else if (frame.channels() < 3) {
         // If less than 3 channels, do some appropriate handling
         // For example, you can duplicate the single channel to create a 3-channel image
         cv::cvtColor(frame, frame, cv::COLOR_GRAY2BGR); // Convert to BGR format
@@ -47,7 +44,7 @@ void push_image(cv::Mat &frame, cv::VideoWriter &writer, int frequency, int widt
  * @param config A JSON object containing configuration settings for the video stream.
  * @return An integer status code. 0 for success, -1 for errors.
  */
-int create_stream(const std::vector<std::string> &content_paths, json config)
+int create_stream(const std::vector<std::string>& content_paths, json config)
 {
 
     // Open Stream
@@ -58,8 +55,7 @@ int create_stream(const std::vector<std::string> &content_paths, json config)
     std::string gstreamer_pipeline = "appsrc ! videoconvert ! " + out;
 
     writer.open(gstreamer_pipeline, 0, (double)fps, cv::Size(config["width"].get<int>(), config["height"].get<int>()), true);
-    if (!writer.isOpened())
-    {
+    if (!writer.isOpened()) {
         printf("=ERR= can't create video writer\n");
         return -1;
     }
@@ -96,46 +92,34 @@ int create_stream(const std::vector<std::string> &content_paths, json config)
     int int_val;
     int duration = 0;
 
-    while (state != Finished)
-    { // TODO: might have to add GSTREAMER specific also!
-        if (state == Playing)
-        {
+    while (state != Finished) { // TODO: might have to add GSTREAMER specific also!
+        if (state == Playing) {
             auto currentTime = std::chrono::high_resolution_clock::now();
             elapsed = currentTime - startTime;
             elapsedSeconds = elapsed.count();
 
-            if (elapsedSeconds >= duration)
-            {
+            if (elapsedSeconds >= duration) {
                 state = Idle;
                 i++;
                 continue;
             }
 
             // perform the playing action
-            if (currentFormat == Video)
-            {
+            if (currentFormat == Video) {
                 cap >> frame;
-            }
-            else if (currentFormat == Unknown)
-            {
+            } else if (currentFormat == Unknown) {
                 state = Idle;
                 i++;
                 continue;
             }
 
             push_image(frame, writer, frequency, config["width"].get<int>(), config["height"].get<int>());
-        }
-        else if (state == Idle)
-        {
+        } else if (state == Idle) {
             // restart or finish loop
-            if (i >= content_paths.size())
-            {
-                if (play_infinite)
-                {
+            if (i >= content_paths.size()) {
+                if (play_infinite) {
                     i = 0;
-                }
-                else
-                {
+                } else {
                     state = Finished;
                     continue;
                 }
@@ -147,39 +131,29 @@ int create_stream(const std::vector<std::string> &content_paths, json config)
             startTime = std::chrono::high_resolution_clock::now();
 
             // Setup next item type
-            if (currentFormat == Image)
-            {
+            if (currentFormat == Image) {
                 frame = cv::imread(content_paths[i], cv::IMREAD_UNCHANGED);
                 duration = default_image_duration;
-            }
-            else if (currentFormat == Video)
-            {
+            } else if (currentFormat == Video) {
                 // remove old stream
                 cap.release();
 
                 // open new stream
-                if (isJSONFile(content_paths[i]))
-                {
+                if (isJSONFile(content_paths[i])) {
                     itemConfig = read_json_file(content_paths[i]);
-                    if (itemConfig["target"].is_number_integer())
-                    {
+                    if (itemConfig["target"].is_number_integer()) {
                         int_val = itemConfig["target"].get<int>();
                         cap.open(int_val);
-                    }
-                    else
-                    {
+                    } else {
                         val = itemConfig["target"].get<std::string>(); // this should throw if incorrect JSON!
                         cap.open(val);
                     }
-                }
-                else
-                {
+                } else {
                     val = content_paths[i];
                     cap.open(val);
                 }
 
-                if (!cap.isOpened())
-                {
+                if (!cap.isOpened()) {
                     printf("=ERR= can't create video capture\n");
                     state = Idle;
                     i++;
@@ -198,9 +172,7 @@ int create_stream(const std::vector<std::string> &content_paths, json config)
 
                 // Set the position to the specified second
                 cap.set(cv::CAP_PROP_POS_MSEC, positionInMillis);
-            }
-            else if (currentFormat == Unknown)
-            {
+            } else if (currentFormat == Unknown) {
                 state = Idle;
                 continue;
             }

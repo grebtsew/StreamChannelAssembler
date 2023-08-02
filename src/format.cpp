@@ -8,11 +8,10 @@
  * @param str The input string to be converted to lowercase.
  * @return A new string with all characters in lowercase.
  */
-std::string toLower(const std::string &str)
+std::string toLower(const std::string& str)
 {
     std::string result = str;
-    std::transform(result.begin(), result.end(), result.begin(), [](unsigned char c)
-                   { return std::tolower(c); });
+    std::transform(result.begin(), result.end(), result.begin(), [](unsigned char c) { return std::tolower(c); });
     return result;
 }
 
@@ -27,14 +26,13 @@ std::string toLower(const std::string &str)
  * @return An enum value representing the detected input format (Image, Video, or Unknown).
  * @see InputFormat
  */
-InputFormat getInputFormat(const std::string &filePath)
+InputFormat getInputFormat(const std::string& filePath)
 {
 
     // Find the position of the last dot in the file path
     size_t dotPos = filePath.find_last_of('.');
 
-    if (dotPos != std::string::npos)
-    {
+    if (dotPos != std::string::npos) {
         // Extract the file extension from the file path
         std::string extension = filePath.substr(dotPos + 1);
 
@@ -42,17 +40,12 @@ InputFormat getInputFormat(const std::string &filePath)
         extension = toLower(extension);
 
         // Check the extension and return the appropriate file type
-        if (extension == "jpg" || extension == "jpeg" || extension == "png" || extension == "gif")
-        {
+        if (extension == "jpg" || extension == "jpeg" || extension == "png" || extension == "gif") {
             return Image;
-        }
-        else if (extension == "json")
-        {
+        } else if (extension == "json") {
             // json json_object = read_json_file(filePath);
             return Video;
-        }
-        else if (extension == "mp4" || extension == "avi" || extension == "mov")
-        {
+        } else if (extension == "mp4" || extension == "avi" || extension == "mov") {
             return Video;
         }
     }
