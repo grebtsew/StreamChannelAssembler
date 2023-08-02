@@ -8,18 +8,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Install OpenCV
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y build-essential cmake pkg-config libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libopencv-dev libgtk-3-dev catch2 
+      - name: Install OpenCV
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake pkg-config libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libopencv-dev libgtk-3-dev catch2
 
-    - name: Build and run tests
-      run: |
-        mkdir build
-        cd build
-        cmake ..  # Adjust the CMake configuration according to your project
-        make      # Use the appropriate build command for your project
-        ./tests     # Run the tests 
+      - name: Build and run tests
+        run: |
+          mkdir build
+          cd build
+          cmake ..  # Adjust the CMake configuration according to your project
+          make      # Use the appropriate build command for your project
+          ./tests     # Run the tests
