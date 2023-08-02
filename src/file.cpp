@@ -45,6 +45,14 @@ std::vector<std::string> get_stream_content(const std::string &contentFolderPath
     return gatheredPaths;
 }
 
+/**
+ * @brief Check if the given file has a ".json" extension.
+ *
+ * This function takes a file path as input and checks if the file has a ".json" extension.
+ *
+ * @param filePath The path of the file to check.
+ * @return True if the file has a ".json" extension, false otherwise.
+ */
 bool isJSONFile(const std::string &filePath)
 {
     // Get the last position of the dot in the file path
@@ -60,6 +68,15 @@ bool isJSONFile(const std::string &filePath)
     return (fileExtension == "json");
 }
 
+/**
+ * @brief Read and parse a JSON file.
+ *
+ * This function reads the contents of the specified JSON file and parses it into a JSON object.
+ *
+ * @param filePath The path of the JSON file to read.
+ * @return A JSON object containing the data from the JSON file.
+ * @throws std::runtime_error If the file cannot be opened or read.
+ */
 json read_json_file(const std::string &filePath)
 {
     std::ifstream inputFile(filePath);
@@ -79,6 +96,14 @@ json read_json_file(const std::string &filePath)
     return jsonObject;
 }
 
+/**
+ * @brief Get the file extension from a given file path.
+ *
+ * This function takes a file path as input and extracts the file extension (the part after the last dot).
+ *
+ * @param filePath The path of the file to get the extension from.
+ * @return The file extension as a string, or an empty string if no extension is found.
+ */
 std::string get_file_extension(const std::string &filePath)
 {
     // Find the last dot (.) in the file path

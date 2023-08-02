@@ -3,6 +3,18 @@
 #include <opencv2/opencv.hpp>
 using namespace cv;
 
+/**
+ * @brief Push an image frame to a video writer.
+ *
+ * This function takes an image frame in the form of a cv::Mat and writes it to a cv::VideoWriter.
+ * It also performs resizing and color space conversion to ensure compatibility with the video writer.
+ *
+ * @param frame The image frame to be pushed to the video writer.
+ * @param writer The cv::VideoWriter object used for writing the frames to the video.
+ * @param frequency The frequency in milliseconds to wait between pushing frames (default is 30ms).
+ * @param width The desired width of the output frame (default is 640).
+ * @param height The desired height of the output frame (default is 480).
+ */
 void push_image(cv::Mat &frame, cv::VideoWriter &writer, int frequency = 30, int width = 640, int height = 480)
 {
 
@@ -27,6 +39,17 @@ void push_image(cv::Mat &frame, cv::VideoWriter &writer, int frequency = 30, int
     cv::waitKey(frequency);
 }
 
+/**
+ * @brief Create a video stream from a list of content paths using OpenCV.
+ *
+ * This function creates a video stream by processing a list of content paths specified in 'content_paths'
+ * and a JSON configuration 'config'. The function reads image and video files, combines them into a video stream,
+ * and writes the output to a file defined in the configuration.
+ *
+ * @param content_paths A vector of strings containing the paths of image and video files to be included in the stream.
+ * @param config A JSON object containing configuration settings for the video stream.
+ * @return An integer status code. 0 for success, -1 for errors.
+ */
 int create_stream(const std::vector<std::string> &content_paths, json config)
 {
 
