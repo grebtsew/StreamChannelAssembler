@@ -5,9 +5,23 @@
 #include <opencv2/opencv.hpp>
 using namespace cv;
 
+/**
+ * @brief Entry point of the program.
+ *
+ * This is the main function of the program. It serves as the entry point and is responsible
+ * for executing the core functionality of the program. The program creates gStreams that can be broadcasted from images, videos and livefeeds that are found in a folder.
+ *
+ * Usage: Change content in ./data/content/ folder and run the application.
+ *          The application is written in C++ and built using CMake.
+ *
+ * @param argc The number of command-line arguments, including the program name.
+ * @param argv An array of C-style strings containing the command-line arguments.
+ * @return An integer status code. Typically, 0 for success and non-zero for error.
+ *
+ * @note None
+ */
 int main(int argc, char *argv[])
 {
-
     /* 1. Get config */
     std::string configJsonPath = "./data/config.json";
     json json_object = read_json_file(configJsonPath);

@@ -1,5 +1,13 @@
 #include "format.h"
 
+/**
+ * @brief Convert a string to lowercase.
+ *
+ * This function takes a string as input and returns a new string where all characters are converted to lowercase.
+ *
+ * @param str The input string to be converted to lowercase.
+ * @return A new string with all characters in lowercase.
+ */
 std::string toLower(const std::string &str)
 {
     std::string result = str;
@@ -8,6 +16,17 @@ std::string toLower(const std::string &str)
     return result;
 }
 
+/**
+ * @brief Determine the input format based on the file extension.
+ *
+ * This function takes a file path as input and determines the input format based on the file extension.
+ * The function compares the file extension (case-insensitive) to known image and video extensions
+ * to identify the format.
+ *
+ * @param filePath The path of the file to determine the input format for.
+ * @return An enum value representing the detected input format (Image, Video, or Unknown).
+ * @see InputFormat
+ */
 InputFormat getInputFormat(const std::string &filePath)
 {
 
