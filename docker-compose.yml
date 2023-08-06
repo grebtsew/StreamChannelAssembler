@@ -5,6 +5,7 @@ services:
     build: ./
     volumes:
       - ./data:/app/data
+      - ./build:/app/build
     ports:
       - "1935:1935"
       - "80:80"
