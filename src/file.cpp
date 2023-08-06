@@ -15,20 +15,26 @@
  *
  * @note Recursive function, that will go throught all subdirectories also.
  */
-std::vector<std::string> get_stream_content(const std::string& contentFolderPath, const std::vector<std::string>& allowedExtensions)
+std::vector<std::string> get_stream_content(const std::string &contentFolderPath, const std::vector<std::string> &allowedExtensions)
 {
     std::vector<std::string> gatheredPaths;
 
-    for (const auto& entry : std::filesystem::directory_iterator(contentFolderPath)) {
-        if (entry.is_regular_file()) {
+    for (const auto &entry : std::filesystem::directory_iterator(contentFolderPath))
+    {
+        if (entry.is_regular_file())
+        {
             std::string fileExtension = entry.path().extension().string();
-            for (const std::string& allowedExtension : allowedExtensions) {
-                if (fileExtension == allowedExtension) {
+            for (const std::string &allowedExtension : allowedExtensions)
+            {
+                if (fileExtension == allowedExtension)
+                {
                     gatheredPaths.push_back(entry.path().string());
                     break;
                 }
             }
-        } else if (entry.is_directory()) {
+        }
+        else if (entry.is_directory())
+        {
             // Recursive call to search for files in subdirectories
             const std::string subDirPath = entry.path().string();
             std::vector<std::string> subDirFiles = get_stream_content(subDirPath, allowedExtensions);
@@ -47,7 +53,7 @@ std::vector<std::string> get_stream_content(const std::string& contentFolderPath
  * @param filePath The path of the file to check.
  * @return True if the file has a ".json" extension, false otherwise.
  */
-bool isJSONFile(const std::string& filePath)
+bool isJSONFile(const std::string &filePath)
 {
     // Get the last position of the dot in the file path
     size_t dotPosition = filePath.find_last_of('.');
@@ -71,17 +77,20 @@ bool isJSONFile(const std::string& filePath)
  * @return A JSON object containing the data from the JSON file.
  * @throws std::runtime_error If the file cannot be opened or read.
  */
-json read_json_file(const std::string& filePath)
+json read_json_file(const std::string &filePath)
 {
     std::ifstream inputFile(filePath);
     json jsonObject;
 
-    if (inputFile.is_open()) {
+    if (inputFile.is_open())
+    {
         inputFile >> jsonObject;
         inputFile.close();
-    } else {
+    }
+    else
+    {
         // Handle the error if the file cannot be opened or read
-        throw std::runtime_error("Error: Unable to open or read the JSON file.");
+        throw std::runtime_error("Error: Unable to open or read the JSON file. Path: " + filePath);
     }
 
     return jsonObject;
@@ -95,11 +104,12 @@ json read_json_file(const std::string& filePath)
  * @param filePath The path of the file to get the extension from.
  * @return The file extension as a string, or an empty string if no extension is found.
  */
-std::string get_file_extension(const std::string& filePath)
+std::string get_file_extension(const std::string &filePath)
 {
     // Find the last dot (.) in the file path
     size_t lastDotIndex = filePath.find_last_of(".");
-    if (lastDotIndex == std::string::npos) {
+    if (lastDotIndex == std::string::npos)
+    {
         // No dot found, return an empty string (no extension)
         return "";
     }

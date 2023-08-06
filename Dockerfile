@@ -30,12 +30,9 @@ COPY CMakeLists.txt /app/
 COPY main.cpp /app/
 COPY src /app/src
 COPY tests /app/tests
+COPY docker /docker
 
-# Build the C++ project using CMake
-RUN mkdir build \
-    && cd build \
-    && cmake .. \
-    && make
+RUN chmod +x /docker/entrypoint.sh
 
 # Command to run the C++ project
-CMD ["/app/build/StreamChannelAssembler"]
+CMD ["/docker/entrypoint.sh"]
