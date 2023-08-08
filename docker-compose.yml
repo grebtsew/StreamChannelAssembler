@@ -1,13 +1,10 @@
 version: '3.8'
+
 services:
 
   stream_channel_assembler:
+    container_name: streamchannelassembler
     build: ./
     volumes:
       - ./data:/app/data
       - ./build:/app/build
-    ports:
-      - "1935:1935"
-      - "80:80"
-      - "443:443"
-      - "554:554"

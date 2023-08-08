@@ -1,9 +1,0 @@
-version: '3'
-services:
-  janus-gateway:
-    build:
-      context: . # Directory containing the Dockerfile
-    ports:
-      - "8088:8088" # HTTP API
-      - "8089:8089" # WebSocket API
-      - "10000-10200:10000-10200/udp" # RTP/RTCP ports

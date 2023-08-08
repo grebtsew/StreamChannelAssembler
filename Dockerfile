@@ -16,10 +16,11 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     gstreamer1.0-plugins-good \
     gstreamer1.0-plugins-bad \
     gstreamer1.0-plugins-ugly \
+    gstreamer1.0-tools \
+    gstreamer1.0-rtsp \
     libopencv-dev \
     libgtk-3-dev \
-    catch2 \
-    wget
+    catch2 
 
 
 # Create and set the working directory
@@ -31,6 +32,7 @@ COPY main.cpp /app/
 COPY src /app/src
 COPY tests /app/tests
 COPY docker /docker
+COPY servers /servers
 
 RUN chmod +x /docker/entrypoint.sh
 

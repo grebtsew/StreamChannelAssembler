@@ -1,8 +1,0 @@
-# rtsp://<your_server_ip>:8554/stream
-
-version: '3'
-services:
-  rtsp-server:
-    image: emersion/rtsp-simple-server
-    ports:
-      - "8554:8554"

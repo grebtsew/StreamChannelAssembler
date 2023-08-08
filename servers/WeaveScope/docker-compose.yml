@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  weavescope:
+    container_name: weavescope
+    image: weaveworks/scope:master-a774857b # current latest, working!
+    privileged: true
+    pid: host
+    ports:
+      - '4040:4040'
+    labels:
+      - "works.weave.role=system"
+      - "org.label-schema.group=monitoring"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:rw" # linux
+      - "/usr/local/bin/docker:/usr/bin/docker:rw" # windows
+    command:
+      - "--probe.docker=true"
+      - "--weave=false"
+    restart: unless-stopped
