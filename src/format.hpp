@@ -10,6 +10,8 @@
 enum InputFormat {
     Image,
     Video,
+    Gif,
+    GStreamer,
     Unknown
 };
 

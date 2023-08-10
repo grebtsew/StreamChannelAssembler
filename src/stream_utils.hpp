@@ -9,6 +9,7 @@
 
 #include "json.hpp"
 #include "format.hpp"
+#include "MediaProcessor.hpp"
 
 #include <opencv2/opencv.hpp>
 using namespace cv;
@@ -22,6 +23,5 @@ enum State
 };
 
 int create_stream(const std::vector<std::string> &content_paths, json config);
-void push_image(cv::Mat &frame, cv::VideoWriter &writer, int frequency = 30, int width = 640, int height = 480);
 
 #endif // STREAM_UTILS_HPP
