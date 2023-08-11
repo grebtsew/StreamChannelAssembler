@@ -6,8 +6,10 @@
 ![commit](https://img.shields.io/github/last-commit/grebtsew/StreamChannelAssembler)
 
 
+![demo](./data/contents/demo.gif) // TODO:
+
 # Motivation
-To be fair, I am quite rusty in `C++`, which motivates the decision to create a new project in `C++`. The focus with the project is to create clean and good practice code towards high performing computing. Video streaming is a computer resource heavy task which fit perfectly. The application is strongly coupled to gStreamer and OpenCV which are great libraries to learn when renewing one's code language skills.
+To be fair, I am quite rusty in `C++`, which motivates the decision to create a new project in `C++`. The focus with the project is to create clean and good practice code towards high performing computing. Video streaming is a computer resource heavy task which fit perfectly. The application is strongly coupled to gStreamer and OpenCV which are great libraries to learn when renewing one's code language skills. This was also a great opportunity for me to try out the `MediaMTX` project.
 
 # Running
 Firstly install dependencies as in the `Dockerfile`.
@@ -32,7 +34,7 @@ Unit Tests are written using `Catch2`, they are linked to github actions. Tests 
 # Examples
 
 These are some examples of streams that can be added to the content folder except for videos and images.
-
+//TODO:
 ```json
 {
     "name": "Test Video Example",
@@ -58,7 +60,7 @@ These JSON objects can be seen as defining the input to the application.
 # Supported Data Types
 This list show supported datatypes in a table.
 
-| FileType | ContentType | Explaination | Status |
+| FileType | ContentType | Explanation | Status |
 |----------|----------|----------|----------|
 | .png   | Image   | Std. Type | ![Pass](https://img.shields.io/badge/-Pass-brightgreen) |
 | .jpg   | Image   | Std. Type  | ![Pass](https://img.shields.io/badge/-Pass-brightgreen) |
@@ -71,12 +73,12 @@ This list show supported datatypes in a table.
 | .mp4   | Video   | Std. Type  | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
 | .avi   | Video   | Std. Type | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
 | .mov   | Video   | Std. Type | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
-| .gif   | Video   | Gif:s are seen as video | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
+| .gif   | Video   | Gif:s are seen as video. | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
 | .mkv   | Video   | Std. Type | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
 | .mp3   | Audio   | Std. Type | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
 
 How the formats are handled by the media processors are illustrated in the figure below.
-// TODO:
+![system](./data/contents/examples/FormatOverview.png)
 
 # Known issues
 
