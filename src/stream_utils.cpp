@@ -14,11 +14,11 @@
 int create_stream(const std::vector<std::string> &content_paths, json config)
 {
     // New abstraction
-    std::unique_ptr<MediaProcessor> mediaProcessor;
-    std::unique_ptr<ImageContentProcessor> image_process = std::make_unique<ImageContentProcessor>();
-    std::unique_ptr<VideoContentProcessor> video_process = std::make_unique<VideoContentProcessor>();
-    std::unique_ptr<GStreamerContentProcessor> gstreamer_process = std::make_unique<GStreamerContentProcessor>();
-    std::unique_ptr<GifContentProcessor> gif_process = std::make_unique<GifContentProcessor>();
+    std::shared_ptr<MediaProcessor> mediaProcessor;
+    std::shared_ptr<ImageContentProcessor> image_process = std::make_shared<ImageContentProcessor>(config, content_paths);
+    std::shared_ptr<VideoContentProcessor> video_process = std::make_shared<VideoContentProcessor>(config, content_paths);
+    std::shared_ptr<GStreamerContentProcessor> gstreamer_process = std::make_shared<GStreamerContentProcessor>(config, content_paths);
+    std::shared_ptr<GifContentProcessor> gif_process = std::make_shared<GifContentProcessor>(config, content_paths);
 
     // Keep track of when to find next source
     State state = Idle;
@@ -93,19 +93,19 @@ int create_stream(const std::vector<std::string> &content_paths, json config)
             // Setup next item type
             if (currentFormat == Image)
             {
-                mediaProcessor = std::move(image_process);
+                mediaProcessor = image_process;
             }
             else if (currentFormat == Video)
             {
-                mediaProcessor = std::move(video_process);
+                mediaProcessor = video_process;
             }
             else if (currentFormat == Gif)
             {
-                mediaProcessor = std::move(gif_process);
+                mediaProcessor = gif_process;
             }
             else if (currentFormat == GStreamer)
             {
-                mediaProcessor = std::move(gstreamer_process);
+                mediaProcessor = gstreamer_process;
             }
             else if (currentFormat == Unknown)
             {
@@ -114,7 +114,8 @@ int create_stream(const std::vector<std::string> &content_paths, json config)
             }
 
             // reload appropriate assets
-            ret = mediaProcessor->reinitiate(config);
+
+            ret = mediaProcessor->reinitiate(i);
 
             // Asset could not be initiated! (Alias: Stream could not be captured)
             if (ret == -1)
