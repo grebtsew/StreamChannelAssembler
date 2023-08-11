@@ -1,0 +1,10 @@
+{
+    "name":"logo",
+    "image":"./logo1.png",
+    "always":true,
+    "width": 20,
+    "height": 20,
+    "opacity": 0.2,
+    "x":0,
+    "y":0
+}

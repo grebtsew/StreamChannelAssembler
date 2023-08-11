@@ -53,5 +53,5 @@ compile_commands.json
 .vscode/cmake-tools.json
 
 data/contents/*
-data/overlays/*
+#data/overlays/*
 data/transitions/*
