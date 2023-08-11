@@ -1,0 +1,6 @@
+{
+    "name": "ffmpeg-example",
+    "type": "video",
+    "target": "lavfi -i testsrc=size=640x480:rate=30 -vf \"scale=640:480\" -c:v rawvideo -pix_fmt rgb24 -f image2pipe - | your_app",
+    "length": 20
+}
