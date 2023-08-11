@@ -23,6 +23,7 @@ This repository has been dockerized. Currently this is under construction.
 docker-compose up --build
 ```
 The built project is volumed to the local folder `./build`.
+The data folder is also volumed so as to share the content with the docker container easily.
 
 # Testing
 
@@ -80,7 +81,6 @@ How the formats are handled by the media processors are illustrated in the figur
 
 This is a list of known issues that hopefully will be solved in near future:
 
-* .gif not supported
 * pure gstreamer commands can't run
 * readme need more examples and helpful tips of how to run and so on.
 * demo added to readme
