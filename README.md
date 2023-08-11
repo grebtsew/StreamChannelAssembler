@@ -67,6 +67,7 @@ This list show supported datatypes in a table.
 | .json   | FFMPEG   | Define a FFMPEG command to app. See ffmpeg_example.json   | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
 | .json   | Video   | Define a file or command as video. See webcam_example.json   | ![Pass](https://img.shields.io/badge/-Pass-brightgreen) |
 | .json   | Audio   | Define a file or command as audio. See radio_example.json  | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
+| .json   | Image   | Define a file or command as image.  | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
 | .mp4   | Video   | Std. Type  | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
 | .avi   | Video   | Std. Type | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
 | .mov   | Video   | Std. Type | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
@@ -92,14 +93,12 @@ This is a list of known issues that hopefully will be solved in near future:
 * no animations
 * no overlays
 
-
 # Some major sources
 
 * https://stackoverflow.com/questions/37339184/how-to-write-opencv-mat-to-gstreamer-pipeline
 * https://chat.openai.com/
 * https://github.com/bluenviron/mediamtx
 * https://github.com/nlohmann/json
-
 
 
 # License
