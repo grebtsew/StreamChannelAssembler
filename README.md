@@ -22,10 +22,11 @@ This repository has been dockerized. Currently this is under construction.
 ```bash
 docker-compose up --build
 ```
+The built project is volumed to the local folder `./build`.
 
 # Testing
 
-Under construction...
+Unit Tests are written using `Catch2`, they are linked to github actions. Tests will be built with the rest of the project.
 
 # Examples
 
@@ -53,6 +54,27 @@ These JSON objects can be seen as defining the input to the application.
 
 
 
+# Supported Data Types
+This list show supported datatypes in a table.
+
+| FileType | ContentType | Explaination | Status |
+|----------|----------|----------|----------|
+| .png   | Image   | Std. Type | ![Pass](https://img.shields.io/badge/-Pass-brightgreen) |
+| .jpg   | Image   | Std. Type  | ![Pass](https://img.shields.io/badge/-Pass-brightgreen) |
+| .jpeg   | Image   | Std. Type | ![Pass](https://img.shields.io/badge/-Pass-brightgreen) |
+| .json   | GStreamer   | Define a gStreamer command to appsink. See gstreamer_example.json   | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
+| .json   | FFMPEG   | Define a FFMPEG command to app. See ffmpeg_example.json   | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
+| .json   | Video   | Define a file or command as video. See webcam_example.json   | ![Pass](https://img.shields.io/badge/-Pass-brightgreen) |
+| .json   | Audio   | Define a file or command as audio. See radio_example.json  | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
+| .mp4   | Video   | Std. Type  | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
+| .avi   | Video   | Std. Type | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
+| .mov   | Video   | Std. Type | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
+| .gif   | Video   | Gif:s are seen as video | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
+| .mkv   | Video   | Std. Type | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
+| .mp3   | Audio   | Std. Type | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
+
+How the formats are handled by the media processors are illustrated in the figure below.
+// TODO:
 
 # Known issues
 

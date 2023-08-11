@@ -7,15 +7,15 @@
 #include <iostream>
 #include <string>
 
-enum InputFormat {
+enum InputFormat
+{
     Image,
     Video,
-    Gif,
     GStreamer,
     Unknown
 };
 
-InputFormat getInputFormat(const std::string& filePath);
-std::string toLower(const std::string& str);
+InputFormat getInputFormat(const std::string &filePath);
+std::string toLower(const std::string &str);
 
 #endif // FORMAT_HPP

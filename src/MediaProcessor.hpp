@@ -105,13 +105,4 @@ public:
     ~GStreamerContentProcessor() override;
 };
 
-class GifContentProcessor : public MediaProcessor
-{
-public:
-    GifContentProcessor(const nlohmann::json &_config, const std::vector<std::string> &_content_paths);
-    int reinitiate(int i) override;
-    void process(cv::VideoWriter &writer) override;
-    ~GifContentProcessor() override;
-};
-
 #endif

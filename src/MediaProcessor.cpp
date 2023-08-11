@@ -128,22 +128,3 @@ GStreamerContentProcessor::~GStreamerContentProcessor()
 {
     MediaProcessor::~MediaProcessor();
 }
-
-GifContentProcessor::GifContentProcessor(const nlohmann::json &_config, const std::vector<std::string> &_content_paths) : MediaProcessor(_config, _content_paths)
-{
-}
-int GifContentProcessor::reinitiate(int i)
-{
-    MediaProcessor::reinitiate(i);
-    return 0;
-}
-void GifContentProcessor::process(cv::VideoWriter &writer)
-{
-    // read new frame from stream and send
-    // cap >> frame;
-    MediaProcessor::process(writer);
-}
-GifContentProcessor::~GifContentProcessor()
-{
-    MediaProcessor::~MediaProcessor();
-}

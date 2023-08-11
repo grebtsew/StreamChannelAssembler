@@ -1,4 +1,4 @@
-#include "stream_utils.hpp"
+#include "stream.hpp"
 
 /**
  * @brief Create a video stream from a list of content paths using OpenCV.
@@ -18,7 +18,6 @@ int create_stream(const std::vector<std::string> &content_paths, json config)
     std::shared_ptr<ImageContentProcessor> image_process = std::make_shared<ImageContentProcessor>(config, content_paths);
     std::shared_ptr<VideoContentProcessor> video_process = std::make_shared<VideoContentProcessor>(config, content_paths);
     std::shared_ptr<GStreamerContentProcessor> gstreamer_process = std::make_shared<GStreamerContentProcessor>(config, content_paths);
-    std::shared_ptr<GifContentProcessor> gif_process = std::make_shared<GifContentProcessor>(config, content_paths);
 
     // Keep track of when to find next source
     State state = Idle;
@@ -98,10 +97,6 @@ int create_stream(const std::vector<std::string> &content_paths, json config)
             else if (currentFormat == Video)
             {
                 mediaProcessor = video_process;
-            }
-            else if (currentFormat == Gif)
-            {
-                mediaProcessor = gif_process;
             }
             else if (currentFormat == GStreamer)
             {

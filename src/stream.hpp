@@ -1,5 +1,5 @@
-#ifndef STREAM_UTILS_HPP
-#define STREAM_UTILS_HPP
+#ifndef STREAM_HPP
+#define STREAM_HPP
 
 #include <iostream>
 #include <iomanip>
@@ -24,4 +24,4 @@ enum State
 
 int create_stream(const std::vector<std::string> &content_paths, json config);
 
-#endif // STREAM_UTILS_HPP
+#endif // STREAM_HPP

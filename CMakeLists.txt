@@ -24,13 +24,13 @@ message("CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")
 
 
 # Add your source files
-add_executable(StreamChannelAssembler main.cpp src/format.cpp src/file.cpp src/stream_utils.cpp src/MediaProcessor.cpp)
+add_executable(StreamChannelAssembler main.cpp src/format.cpp src/file.cpp src/stream.cpp src/MediaProcessor.cpp)
 
 add_subdirectory(src)
 
 target_include_directories(StreamChannelAssembler PRIVATE ${OpenCV_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-target_link_libraries(StreamChannelAssembler PRIVATE ${OpenCV_LIBS} ${GST_LIBRARIES} file format stream_utils
+target_link_libraries(StreamChannelAssembler PRIVATE ${OpenCV_LIBS} ${GST_LIBRARIES} file format stream mediaprocessor
     PkgConfig::gtk3
     PkgConfig::gstreamer
     PkgConfig::gstreamer-sdp
@@ -40,7 +40,7 @@ target_link_libraries(StreamChannelAssembler PRIVATE ${OpenCV_LIBS} ${GST_LIBRAR
 
 # TODO: update tests!
 # Add your test files and create the test executable
-#add_executable(tests tests/test_main.cpp tests/test_to_lower.cpp tests/test_get_input_format.cpp tests/test_create_stream.cpp tests/test_push_image.cpp src/format.cpp src/file.cpp src/stream_utils.cpp src/MediaProcessor.cpp)
+#add_executable(tests tests/test_main.cpp tests/test_to_lower.cpp tests/test_get_input_format.cpp tests/test_create_stream.cpp tests/test_push_image.cpp src/format.cpp src/file.cpp src/stream.cpp src/MediaProcessor.cpp)
 
 # Link the tests with the Catch2 library (or your preferred testing library)
 #target_link_libraries(tests PRIVATE Catch2::Catch2 ${OpenCV_LIBS} file format stream_utils)
