@@ -6,8 +6,12 @@
         ".jpg",
         ".jpeg",
         ".mp4",
+        ".mp3",
         ".avi",
-        ".json"
+        ".mov",
+        ".mkv",
+        ".json",
+        ".gif"
     ],
     "fps": 24,
     "play_infinite": true,

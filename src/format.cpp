@@ -49,9 +49,10 @@ InputFormat getInputFormat(const std::string &filePath)
         else if (extension == "json")
         {
             // json json_object = read_json_file(filePath);
+            // TODO: find gstreamer and ffmpeg if needed here later!
             return Video;
         }
-        else if (extension == "mp4" || extension == "avi" || extension == "mov" || extension == "gif" || extension == "mkv")
+        else if (extension == "mp3" || extension == "mp4" || extension == "avi" || extension == "mov" || extension == "gif" || extension == "mkv")
         {
             return Video;
         }

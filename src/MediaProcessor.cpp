@@ -88,14 +88,23 @@ int VideoContentProcessor::reinitiate(int i)
     totalFrames = static_cast<int>(cap.get(cv::CAP_PROP_FRAME_COUNT));
     video_fps = cap.get(cv::CAP_PROP_FPS);
     videoLengthSeconds = static_cast<double>(totalFrames) / fps;
-    duration = itemConfig.value("length", (int)videoLengthSeconds);
 
-    // Set startpos
-    specifiedSecond = itemConfig.value("start", 0);
-    positionInMillis = static_cast<int>(specifiedSecond * 1000);
+    if (isJSONFile(content_paths[i]))
+    {
+        duration = itemConfig.value("length", (int)videoLengthSeconds);
 
-    // Set the position to the specified second
-    cap.set(cv::CAP_PROP_POS_MSEC, positionInMillis);
+        // Set startpos
+        specifiedSecond = itemConfig.value("start", 0);
+        positionInMillis = static_cast<int>(specifiedSecond * 1000);
+
+        // Set the position to the specified second
+        cap.set(cv::CAP_PROP_POS_MSEC, positionInMillis);
+    }
+    else
+    {
+        duration = (int)videoLengthSeconds;
+    }
+
     return 0;
 }
 void VideoContentProcessor::process(cv::VideoWriter &writer)
