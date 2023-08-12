@@ -12,17 +12,28 @@
 To be fair, I am quite rusty in `C++`, which motivates the decision to create a new project in `C++`. The focus with the project is to create clean and good practice code towards high performing computing. Video streaming is a computer resource heavy task which fit perfectly. The application is strongly coupled to gStreamer and OpenCV which are great libraries to learn when renewing one's code language skills. This was also a great opportunity for me to try out the `MediaMTX` project.
 
 # Running
+The general usercase is as follows:
+1. Place all wanted content in `./data/contents/` folder. (Optionally remove the examples)
+2. Update `./data/config.json` to change general settings such as output location, playlist order, overlays and animations.
+3. Execute the code locally or docker. (See more below.)
+4. View the stream. (If chosen to play locally, the stream will be shown as soon as the application starts running.)
+5. Enjoy!
+
+# Executing locally
 Firstly install dependencies as in the `Dockerfile`.
 Then compile, build and run the application by running the following command:
 ```bash
 cmake -S . -B build && cmake --build build && ./build/StreamChannelAssembler
 ```
 
-# Docker
+# Executing Docker
 This repository has been dockerized. Currently this is under construction.
 
 ```bash
-docker-compose up --build
+# Build and run the container and stream
+docker-compose up
+# View Stream in vlc by running
+vlc rtsp://localhost:554/livestream
 ```
 The built project is volumed to the local folder `./build`.
 The data folder is also volumed so as to share the content with the docker container easily.
