@@ -1,5 +1,20 @@
 #include "stream.hpp"
 
+void shuffleVectorInPlace(std::vector<std::string> &inputVector)
+{
+    // Seed the random number generator with the current time
+    auto seed = std::chrono::high_resolution_clock::now().time_since_epoch().count();
+    std::mt19937 generator(static_cast<unsigned int>(seed));
+
+    // Fisher-Yates shuffle algorithm
+    for (int i = inputVector.size() - 1; i > 0; --i)
+    {
+        std::uniform_int_distribution<int> distribution(0, i);
+        int j = distribution(generator);
+        std::swap(inputVector[i], inputVector[j]);
+    }
+}
+
 /**
  * @brief Create a video stream from a list of content paths using OpenCV.
  *
@@ -19,6 +34,8 @@ int create_stream(const std::vector<std::string> &content_paths, json config)
     std::shared_ptr<VideoContentProcessor> video_process = std::make_shared<VideoContentProcessor>(config, content_paths);
     std::shared_ptr<GStreamerContentProcessor> gstreamer_process = std::make_shared<GStreamerContentProcessor>(config, content_paths);
 
+    std::vector<std::string> updated_paths = content_paths;
+
     // Keep track of when to find next source
     State state = Idle;
     InputFormat currentFormat = Unknown;
@@ -37,6 +54,11 @@ int create_stream(const std::vector<std::string> &content_paths, json config)
 
     // additional settings
     bool play_infinite = config["play_infinite"].get<bool>();
+    std::string playlist = config["playlist"].get<std::string>();
+    if (playlist == "random")
+    {
+        shuffleVectorInPlace(updated_paths);
+    }
 
     // initiate Time and index
     int i = 0;
@@ -47,6 +69,7 @@ int create_stream(const std::vector<std::string> &content_paths, json config)
 
     // tmp value
     int ret;
+    int tmp_index;
 
     while (state != Finished)
     {
@@ -74,6 +97,10 @@ int create_stream(const std::vector<std::string> &content_paths, json config)
                 if (play_infinite)
                 {
                     i = 0;
+                    if (playlist == "random")
+                    {
+                        shuffleVectorInPlace(updated_paths);
+                    }
                 }
                 else
                 {
@@ -83,9 +110,10 @@ int create_stream(const std::vector<std::string> &content_paths, json config)
             }
 
             // finish or play next item
-            currentFormat = getInputFormat(content_paths[i]);
+            currentFormat = getInputFormat(updated_paths[i]);
 
-            std::cout << "On Item " << currentFormat << " : " << content_paths[i] << std::endl;
+            std::cout << "On Item "
+                      << " : " << updated_paths[i] << std::endl;
 
             startTime = std::chrono::high_resolution_clock::now();
 
@@ -109,8 +137,9 @@ int create_stream(const std::vector<std::string> &content_paths, json config)
             }
 
             // reload appropriate assets
-
-            ret = mediaProcessor->reinitiate(i);
+            auto it = std::find(content_paths.begin(), content_paths.end(), updated_paths[i]);
+            tmp_index = (it != content_paths.end()) ? std::distance(content_paths.begin(), it) : -1;
+            ret = mediaProcessor->reinitiate(tmp_index);
 
             // Asset could not be initiated! (Alias: Stream could not be captured)
             if (ret == -1)

@@ -17,5 +17,6 @@
     "play_infinite": true,
     "height": 480,
     "width": 640,
-    "out": "autovideosink"
+    "out": "autovideosink",
+    "playlist": "random"
 }

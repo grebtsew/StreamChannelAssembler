@@ -6,6 +6,7 @@
 #include <thread>
 #include <chrono>
 #include <vector>
+#include <random>
 
 #include "json.hpp"
 #include "format.hpp"
