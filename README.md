@@ -27,12 +27,12 @@ cmake -S . -B build && cmake --build build && ./build/StreamChannelAssembler
 ```
 
 # Executing Docker
-This repository has been dockerized. Currently this is under construction.
+This repository has been dockerized. Install docker and run command below.
 
 ```bash
 # Build and run the container and stream
 docker-compose up
-# View Stream in vlc by running
+# View Stream in vlc (if installed!) by running
 vlc rtsp://localhost:554/livestream
 ```
 The built project is volumed to the local folder `./build`.
@@ -80,12 +80,12 @@ This list show supported datatypes in a table.
 | .json   | FFMPEG   | Define a FFMPEG command to app. See ffmpeg_example.json   | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
 | .json   | Video   | Define a file or command as video. See webcam_example.json   | ![Pass](https://img.shields.io/badge/-Pass-brightgreen) |
 | .json   | Audio   | Define a file or command as audio. See radio_example.json  | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
-| .json   | Image   | Define a file or command as image.  | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
-| .mp4   | Video   | Std. Type  | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
-| .avi   | Video   | Std. Type | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
-| .mov   | Video   | Std. Type | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
-| .gif   | Video   | Gif:s are seen as video. | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
-| .mkv   | Video   | Std. Type | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
+| .json   | Image   | Define a file or command as image.  | ![Pass](https://img.shields.io/badge/-Pass-brightgreen) |
+| .mp4   | Video   | Std. Type  | ![Pass](https://img.shields.io/badge/-Pass-brightgreen) |
+| .avi   | Video   | Std. Type | ![Pass](https://img.shields.io/badge/-Pass-brightgreen) |
+| .mov   | Video   | Std. Type | ![Pass](https://img.shields.io/badge/-Pass-brightgreen) |
+| .gif   | Video   | Gif:s are seen as video. | ![Pass](https://img.shields.io/badge/-Pass-brightgreen) |
+| .mkv   | Video   | Std. Type | ![Pass](https://img.shields.io/badge/-Pass-brightgreen) |
 | .mp3   | Audio   | Std. Type | ![Pass](https://img.shields.io/badge/-Untested-yellow) |
 
 How the formats are handled by the media processors are illustrated in the figure below.
