@@ -8,17 +8,19 @@
 #include "json.hpp"
 #include <opencv2/opencv.hpp>
 
+void convertToBGR(cv::Mat &image);
+
 class MediaProcessor
 {
 public:
     cv::Mat frame;
+    std::vector<cv::Mat> overlayImages;
     int duration;
     MediaProcessor(const nlohmann::json &config, const std::vector<std::string> &_content_paths);
     virtual void process(cv::VideoWriter &writer) = 0;
     virtual int reinitiate(int i) = 0;
     virtual ~MediaProcessor();
-
-private:
+    void performOverlays();
     /**
      * @brief Push an image frame to a video writer.
      *
@@ -34,32 +36,23 @@ private:
     void push_image(cv::Mat &frame, cv::VideoWriter &writer, int frequency, int width, int height)
     {
 
-        if (frame.empty())
-            return;
-
-        cv::resize(frame, frame, cv::Size(width, height));
-
-        if (frame.channels() > 3)
-        {
-            // If more than 3 channels, convert to 3 channels (BGR format)
-            cv::cvtColor(frame, frame, cv::COLOR_RGBA2BGR); // Change conversion code accordingly if needed
-        }
-        else if (frame.channels() < 3)
-        {
-            // If less than 3 channels, do some appropriate handling
-            // For example, you can duplicate the single channel to create a 3-channel image
-            cv::cvtColor(frame, frame, cv::COLOR_GRAY2BGR); // Convert to BGR format
-        }
-
         writer << frame;
         cv::waitKey(frequency);
     }
 
 protected:
+    // Stream Variables
     int fps;
     int height;
     int width;
     int frequency;
+
+    // Overlay Variables
+    double alpha;
+    int x;
+    int y;
+
+    // Globals
     std::vector<std::string> content_paths;
     nlohmann::json config;
 };

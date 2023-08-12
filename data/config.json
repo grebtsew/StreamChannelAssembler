@@ -18,5 +18,8 @@
     "height": 480,
     "width": 640,
     "out": "autovideosink",
-    "playlist": "random"
+    "playlist": "random",
+    "stream_overlays": [
+        "./data/overlays/overlay.json"
+    ]
 }
