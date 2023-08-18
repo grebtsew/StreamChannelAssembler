@@ -11,7 +11,7 @@ enum InputFormat
 {
     Image,
     Video,
-    GStreamer,
+    Audio,
     Unknown
 };
 

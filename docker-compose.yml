@@ -1,10 +1,42 @@
 version: '3.8'
 
 services:
-
   stream_channel_assembler:
     container_name: streamchannelassembler
     build: ./
     volumes:
       - ./data:/app/data
       - ./build:/app/build
+    environment:
+      - out= x264enc speed-preset=ultrafast bitrate=600 key-int-max=60 ! video/x-h264,profile=baseline ! rtspclientsink protocols=tcp location=rtsp://mediamtx:8554/test
+
+  server:
+    container_name: mediamtx
+    image: bluenviron/mediamtx:0.23.8
+    ports:
+      - "8554:8554"
+      - "1935:1935"
+      - "8888:8888"
+      - "8889:8889"
+      - "8890:8890"
+      - "8000:8000"
+      - "8001:8001"
+      - "8189:8189"
+
+  weavescope:
+    container_name: weavescope
+    image: weaveworks/scope:master-a774857b 
+    privileged: true
+    pid: host
+    ports:
+      - '4040:4040'
+    labels:
+      - "works.weave.role=system"
+      - "org.label-schema.group=monitoring"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:rw" # linux
+      - "/usr/local/bin/docker:/usr/bin/docker:rw" # windows
+    command:
+      - "--probe.docker=true"
+      - "--weave=false"
+    restart: unless-stopped

@@ -8,4 +8,4 @@ make
 
 # Run the C++ project
 cd ..
-./build/StreamChannelAssembler
+./build/StreamChannelAssembler $out

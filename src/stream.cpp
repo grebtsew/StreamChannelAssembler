@@ -32,8 +32,7 @@ int create_stream(const std::vector<std::string> &content_paths, json config)
     std::shared_ptr<MediaProcessor> mediaProcessor;
     std::shared_ptr<ImageContentProcessor> image_process = std::make_shared<ImageContentProcessor>(config, content_paths);
     std::shared_ptr<VideoContentProcessor> video_process = std::make_shared<VideoContentProcessor>(config, content_paths);
-    std::shared_ptr<GStreamerContentProcessor> gstreamer_process = std::make_shared<GStreamerContentProcessor>(config, content_paths);
-
+    
     std::vector<std::string> updated_paths = content_paths;
 
     // Keep track of when to find next source
@@ -125,10 +124,6 @@ int create_stream(const std::vector<std::string> &content_paths, json config)
             else if (currentFormat == Video)
             {
                 mediaProcessor = video_process;
-            }
-            else if (currentFormat == GStreamer)
-            {
-                mediaProcessor = gstreamer_process;
             }
             else if (currentFormat == Unknown)
             {

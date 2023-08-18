@@ -6,6 +6,7 @@
 
 #include "file.hpp"
 #include "json.hpp"
+#include "format.hpp"
 #include <opencv2/opencv.hpp>
 
 void convertToBGR(cv::Mat &image);
@@ -35,7 +36,6 @@ public:
      */
     void push_image(cv::Mat &frame, cv::VideoWriter &writer, int frequency, int width, int height)
     {
-
         writer << frame;
         cv::waitKey(frequency);
     }
@@ -74,6 +74,7 @@ public:
     int reinitiate(int i) override;
     void process(cv::VideoWriter &writer) override;
     ~VideoContentProcessor() override;
+    InputFormat video_type;
 
 private:
     cv::VideoCapture cap;
@@ -87,15 +88,6 @@ private:
     double videoLengthSeconds;
     double specifiedSecond;
     int positionInMillis;
-};
-
-class GStreamerContentProcessor : public MediaProcessor
-{
-public:
-    GStreamerContentProcessor(const nlohmann::json &_config, const std::vector<std::string> &_content_paths);
-    int reinitiate(int i) override;
-    void process(cv::VideoWriter &writer) override;
-    ~GStreamerContentProcessor() override;
 };
 
 #endif

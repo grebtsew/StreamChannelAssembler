@@ -1,6 +1,6 @@
 {
     "name": "radio-example",
-    "type": "video",
+    "type": "gstreamer",
     "target": "audiotestsrc num-buffers=44100 ! audioconvert ! appsink",
     "length": 20
 }

@@ -133,7 +133,18 @@ int VideoContentProcessor::reinitiate(int i)
         else
         {
             val = itemConfig["target"].get<std::string>(); // this should throw if incorrect JSON!
-            cap.open(val);
+            if (itemConfig.contains("type")){
+                if (itemConfig["type"] == "gstreamer"){
+                    cap.open(val,cv::CAP_GSTREAMER);
+                } else if (itemConfig["type"] == "ffmpeg") {
+                    cap.open(val,cv::CAP_FFMPEG);
+                } else {
+                    cap.open(val);
+                }
+            } else {
+                cap.open(val);
+            }
+            
         }
     }
     else
@@ -179,24 +190,5 @@ void VideoContentProcessor::process(cv::VideoWriter &writer)
 VideoContentProcessor::~VideoContentProcessor()
 {
     cap.release();
-    MediaProcessor::~MediaProcessor();
-}
-
-GStreamerContentProcessor::GStreamerContentProcessor(const nlohmann::json &_config, const std::vector<std::string> &_content_paths) : MediaProcessor(_config, _content_paths)
-{
-}
-int GStreamerContentProcessor::reinitiate(int i)
-{
-    MediaProcessor::reinitiate(i);
-    return 0;
-}
-void GStreamerContentProcessor::process(cv::VideoWriter &writer)
-{
-    // read new frame from stream and send
-    // cap >> frame;
-    MediaProcessor::process(writer);
-}
-GStreamerContentProcessor::~GStreamerContentProcessor()
-{
     MediaProcessor::~MediaProcessor();
 }

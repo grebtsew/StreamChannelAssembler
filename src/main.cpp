@@ -21,10 +21,19 @@ using namespace cv;
  */
 int main(int argc, char *argv[])
 {
+    
     /* 1. Get config */
     std::string configJsonPath = "./data/config.json";
     json json_object = read_json_file(configJsonPath);
     std::cout << "Config Json Collected : " << json_object << std::endl;
+
+    if (argc > 1) {
+        // This argument is optional and should be output path.
+        json_object["out"] == argv[1];
+    } 
+
+    std::cout << "Will be pushing stream to : " << argv[1] << std::endl;
+
 
     /* 2. Collect all content files */
     std::string contentFolderPath = json_object["content_folder"];
