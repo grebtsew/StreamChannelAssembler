@@ -20,7 +20,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     gstreamer1.0-rtsp \
     libopencv-dev \
     libgtk-3-dev \
-    catch2 
+    catch2 \
+    ffmpeg
 
 
 # Create and set the working directory
@@ -28,7 +29,6 @@ WORKDIR /app
 
 # Copy the CMakeLists.txt and source files to the container
 COPY CMakeLists.txt /app/
-COPY main.cpp /app/
 COPY src /app/src
 COPY tests /app/tests
 COPY docker /docker

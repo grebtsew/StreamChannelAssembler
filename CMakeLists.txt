@@ -24,7 +24,7 @@ message("CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")
 
 
 # Add your source files
-add_executable(StreamChannelAssembler main.cpp src/format.cpp src/file.cpp src/stream.cpp src/MediaProcessor.cpp)
+add_executable(StreamChannelAssembler src/main.cpp src/format.cpp src/file.cpp src/stream.cpp src/MediaProcessor.cpp)
 
 add_subdirectory(src)
 

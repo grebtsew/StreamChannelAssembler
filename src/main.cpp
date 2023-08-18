@@ -1,5 +1,5 @@
-#include "src/file.hpp"
-#include "src/stream.hpp"
+#include "file.hpp"
+#include "stream.hpp"
 #include <iostream>
 #include <opencv2/opencv.hpp>
 using namespace cv;
