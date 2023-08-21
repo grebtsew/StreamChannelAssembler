@@ -19,15 +19,18 @@ The general usercase is as follows:
 4. View the stream. (If chosen to play locally, the stream will be shown as soon as the application starts running.)
 5. Enjoy!
 
+**NOTE**: For fast run use `./run.sh` it will trigger docker-compose and then open VLC or gStreamer to visualize the stream if installed.
+
 # Executing locally
 Firstly install dependencies as in the `Dockerfile`.
 Then compile, build and run the application by running the following command:
 ```bash
 cmake -S . -B build && cmake --build build && ./build/StreamChannelAssembler
 ```
-
+**NOTE**: The main advantage with running locally is that the stream can be viewed locally without an X-server. Using docker though, the project build will be volumed, which means the project can then be run locally but built in docker container.
 # Executing Docker
 This repository has been dockerized. Install docker and run command below.
+It is recommended to use mediaMTX in docker, which means the video will be streamed to an url, which can be collected using vlc or gStreamer. This can be accomplished by running the commands below or using the `./run.sh` script. The build will also be volumed, which means you can run the application locally too.
 
 ```bash
 # Build and run the container and stream
@@ -40,7 +43,7 @@ The data folder is also volumed so as to share the content with the docker conta
 
 # Testing
 
-Unit Tests are written using `Catch2`, they are linked to github actions. Tests will be built with the rest of the project.
+Unit Tests are written using `Catch2`, they are linked to github actions. Tests will be built with the rest of the project. //TODO: update this
 
 # Examples
 
@@ -55,6 +58,7 @@ These are some examples of streams that can be added to the content folder excep
     "start": 0 // where in the stream we should start
 }
 ```
+**NOTE**: Comments using "//" are not allowed in json syntax, so remove the comments if you are trying this example out.
 
 ```json
 {
@@ -95,16 +99,12 @@ How the formats are handled by the media processors are illustrated in the figur
 
 This is a list of known issues that hopefully will be solved in near future:
 
-* pure gstreamer commands can't run
 * readme need more examples and helpful tips of how to run and so on.
 * demo added to readme
-* fix performance
 * add scheduler
 * add a couple of playlist orders, such as random
 * fix local view in a manageable windowform
-* add test rtsp, hls and webrtc stream commands
 * no animations
-* no overlays
 
 # Some major sources
 

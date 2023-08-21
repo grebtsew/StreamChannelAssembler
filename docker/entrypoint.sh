@@ -8,4 +8,5 @@ make
 
 # Run the C++ project
 cd ..
+echo " OUT COMMAND : $out"
 ./build/StreamChannelAssembler $out

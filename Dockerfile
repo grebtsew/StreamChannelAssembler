@@ -21,7 +21,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     libopencv-dev \
     libgtk-3-dev \
     catch2 \
-    ffmpeg
+    ffmpeg \
+    dos2unix  
 
 
 # Create and set the working directory
@@ -34,6 +35,7 @@ COPY tests /app/tests
 COPY docker /docker
 COPY servers /servers
 
+RUN dos2unix /docker/entrypoint.sh
 RUN chmod +x /docker/entrypoint.sh
 
 # Command to run the C++ project

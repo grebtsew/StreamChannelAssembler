@@ -29,10 +29,20 @@ int main(int argc, char *argv[])
 
     if (argc > 1) {
         // This argument is optional and should be output path.
-        json_object["out"] == argv[1];
+        std::string pipeline;
+        for (int i = 1; i < argc; ++i) {
+            pipeline += argv[i];
+            
+            if (i < argc - 1) {
+                pipeline += " ";
+            }
+        }
+        json_object["out"]=pipeline;
     } 
 
-    std::cout << "Will be pushing stream to : " << argv[1] << std::endl;
+
+    std::cout << "Stream output : " << json_object["out"] << std::endl;
+    std::cout << " argc " << argc << std::endl;
 
 
     /* 2. Collect all content files */
