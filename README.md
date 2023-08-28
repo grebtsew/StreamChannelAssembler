@@ -95,6 +95,11 @@ This list show supported datatypes in a table.
 How the formats are handled by the media processors are illustrated in the figure below.
 ![system](./data/contents/examples/FormatOverview.png)
 
+# Relevant links during execution
+These links are relevant too know when running the docker-compose file.
+* [http://localhost:8888/livestream/] - View FLV HLS
+* [http://localhost:8889/<stream_name>/publish/] - Publish new stream over web
+
 # Known issues
 
 This is a list of known issues that hopefully will be solved in near future:

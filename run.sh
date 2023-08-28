@@ -7,7 +7,7 @@ sleep 10
 
 if command -v vlc &> /dev/null; then
     echo "VLC is installed. Using VLC to play the video."
-    vlc rtsp://localhost:8554/livestream
+    vlc --network-caching=50 rtsp://localhost:8554/livestream
 elif command -v gst-launch-1.0 &> /dev/null; then
     echo "VLC is not installed. Using GStreamer to play the video."
     gst-launch-1.0 playbin uri= rtsp://localhost:8554/livestream
