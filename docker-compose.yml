@@ -1,6 +1,15 @@
 version: '3.8'
 
 services:
+
+  webview:
+    container_name: webview
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./servers/WebView/index.html:/usr/share/nginx/html/index.html
+          
   stream_channel_assembler:
     container_name: streamchannelassembler
     build: ./

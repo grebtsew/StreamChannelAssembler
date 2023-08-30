@@ -97,8 +97,8 @@ How the formats are handled by the media processors are illustrated in the figur
 
 # Relevant links during execution
 These links are relevant too know when running the docker-compose file.
-* [http://localhost:8888/livestream/] - View FLV HLS
-* [http://localhost:8889/<stream_name>/publish/] - Publish new stream over web
+* [http://localhost:8888/livestream/](http://localhost:8888/livestream/) - View FLV HLS
+* [http://localhost:80](http://localhost:80) - Example standalone WebView hosted by Nginx
 
 # Known issues
 
